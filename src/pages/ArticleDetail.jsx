@@ -2,8 +2,7 @@ import axios from "axios"
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 
-const API_URL = "https://hex-escape-room.herokuapp.com"
-const API_PATH_ARTICLES = "/api/react/article/"
+const API_PATH_ARTICLES = "api/react/article/"
 
 function ArticleDetail () {
   const [articleDetail, setArticleDetail] = useState({title:"", author:"", content: "", tag: []})
@@ -11,7 +10,7 @@ function ArticleDetail () {
 
   const fetchData = async () => {
     try{
-      const { data, statusText } = await axios.get(API_URL + API_PATH_ARTICLES + articleId)
+      const { data, statusText } = await axios.get(`${process.env.REACT_APP_URL + API_PATH_ARTICLES + articleId}`)
       if(statusText === "OK"){
         setArticleDetail(data.article)
       }

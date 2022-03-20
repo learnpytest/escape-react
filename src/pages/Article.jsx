@@ -3,15 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import moment from "moment"
 
-const API_URL = "https://hex-escape-room.herokuapp.com"
-const API_PATH_ARTICLES = "/api/react/articles"
+const API_PATH_ARTICLES = "api/react/articles"
 
 function Article() {
   const [articles, setArticles] = useState([])
 
   const fetchData = async () =>{
     try{
-    const {data, statusText} = await axios.get(API_URL + API_PATH_ARTICLES)
+    const {data, statusText} = await axios.get(`${process.env.REACT_APP_URL + API_PATH_ARTICLES}`)
     if(statusText === "OK"){
       setArticles([...data.articles])
     }
